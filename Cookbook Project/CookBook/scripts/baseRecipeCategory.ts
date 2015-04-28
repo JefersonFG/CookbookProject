@@ -6,7 +6,7 @@
 
     //Properties
 
-    get name() {
+    get name(): string {
         return this._name;
     }
     
@@ -14,7 +14,7 @@
         this._name = value;
     }
 
-    get foodGroups() {
+    get foodGroups(): FoodGroup[] {
         return this._foodGroups;
     }
 
