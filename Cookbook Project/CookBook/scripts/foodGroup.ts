@@ -1,7 +1,16 @@
 ﻿class FoodGroup {
+    //Fields
+
     private _name: string;
 
-    //TODO: Create a get and set block for the member variable above. 
+    //Properties
 
+    get name() {
+        return this._name;
+    }
+
+    set name(value: string) {
+        this._name = value;
+    }
 
 } 
