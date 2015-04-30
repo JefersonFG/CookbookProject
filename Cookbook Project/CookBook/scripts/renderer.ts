@@ -9,7 +9,7 @@
         });
     }
 
-    renderCategory(category: BaseRecipeCategory) {
+    renderCategory(category: RecipeCategory) {
         //Update foodgroups bullet points
         var foodGroups = (<HTMLSelectElement> document.getElementById('FoodGroups'));
         foodGroups.value = '';
@@ -19,5 +19,8 @@
         }
         foodGroups.innerHTML = html + '</ul>';
 
+        //Update description
+        var el = (<HTMLSelectElement> document.getElementById('recipeDesc'));
+        el.innerHTML = category.description;
     }
 } 

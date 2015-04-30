@@ -30,6 +30,7 @@
     <TypeScriptCompile Include="scripts\baseRecipeCategory.ts" />
     <TypeScriptCompile Include="scripts\foodGroup.ts" />
     <TypeScriptCompile Include="scripts\initializer.ts" />
+    <TypeScriptCompile Include="scripts\recipeCategory.ts" />
     <TypeScriptCompile Include="scripts\recipeCategories.ts" />
     <TypeScriptCompile Include="scripts\recipeLoader.ts" />
     <TypeScriptCompile Include="scripts\renderer.ts" />

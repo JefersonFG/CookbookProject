@@ -1,11 +1,19 @@
 ﻿var recipeCategories: RecipeCategories;
 var renderer = null;
 
-window.onload = () => { 
+window.onload = () => {
     var categoriesSelect = (<HTMLSelectElement> document.getElementById('RecipeCategory'));
+
+    //Invoke loadRecipes when categoriesSelect.onchange is called
+
     categoriesSelect.onchange = () => loadRecipes();
 
-    var loader = new RecipeLoader("/JSON/recipeTypes.json");
+    //Create the loader object passing the json file as a parameter
+
+    var loader: RecipeLoader = new RecipeLoader("/JSON/recipeTypes.json");
+
+    //Calling the load function of the RecipeLoader
+
     loader.load();
 
     renderer = new Renderer();
@@ -16,8 +24,7 @@ function loadRecipes() {
     try {
         var category = recipeCategories.items
             .filter(i => i.name === el.value)
-            .reduce(i => (new BaseRecipeCategory()));
-
+            .reduce(i => (new RecipeCategory(el.value, i.foodGroups, i.description)));
         renderer.renderCategory(category);
     }
     catch (ex) { alert(ex.message) }

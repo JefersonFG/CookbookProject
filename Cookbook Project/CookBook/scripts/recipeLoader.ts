@@ -10,25 +10,26 @@
     }
 
     mapData() {
-        //get the data from the JSON file
+        //class logic
         var data = JSON.parse(this.request.responseText);
 
         if (data) {
             var categories: any[] = data.recipeCategories;
-            //Map foodgroups data to TS object
+            //Map category data from XHR call to our TS RecipeCategories
             recipeCategories = new RecipeCategories();
             categories.forEach((category) => {
+                //Map foodgroups data to TS object
                 var foodGroups: FoodGroup[] = [];
                 category.foodGroups.forEach((foodGroup) => {
-                    var group = new FoodGroup();
-                    group.name = foodGroup.title; 
-                foodGroups.push(group);
-            });
-                var recipeCategory = new BaseRecipeCategory();
-                recipeCategory.name = category.title;
-                recipeCategory.foodGroups = foodGroups;
+                    var group = new FoodGroup(foodGroup.title);
+                    foodGroups.push(group);
+                });
 
-            recipeCategories.items.push(recipeCategory);
+                var recipeCategory = new RecipeCategory(
+                    category.title,
+                    foodGroups,
+                    category.details);
+                recipeCategories.items.push(recipeCategory);
             });
             
             //Render the categories into the select

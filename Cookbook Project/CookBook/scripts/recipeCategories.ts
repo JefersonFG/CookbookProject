@@ -1,3 +1,5 @@
 ﻿class RecipeCategories {
-    items: BaseRecipeCategory[] = [];
+    //The "items" member stores a collection of 
+    //RecipeCategory objects
+    items: RecipeCategory[] = [];
 }
