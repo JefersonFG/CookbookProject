@@ -1,4 +1,4 @@
-﻿class FoodGroup {
+﻿class FoodGroup implements IFoodGroup {
     //Fields
 
     name: string;
@@ -7,5 +7,5 @@
 
     constructor(name: string) {
         this.name = name;
-    }  
+    } 
 } 

@@ -1,4 +1,4 @@
-﻿class BaseRecipeCategory {
+﻿class BaseRecipeCategory implements IBaseRecipeCategory {
     //Fields
 
     name: string;
