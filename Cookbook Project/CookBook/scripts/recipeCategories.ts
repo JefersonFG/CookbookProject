@@ -1,3 +1,5 @@
-﻿class RecipeCategories {
-    items: IRecipeCategory[] = [];
+﻿class RecipeCategories<T> {
+    //Fields
+
+    items: T[] = [];
 }

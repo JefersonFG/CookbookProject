@@ -1,4 +1,4 @@
-﻿var recipeCategories: RecipeCategories;
+﻿var recipeCategories: RecipeCategories<IRecipeCategory>;
 var renderer = null;
 
 window.onload = () => { 

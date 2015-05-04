@@ -1,4 +1,4 @@
-﻿class Example implements IExample  {
+﻿class Example implements IExample {
     //Fields
 
     name: string;
@@ -11,7 +11,5 @@
         this.name = example.name;
         this.ingredients = example.ingredients;
         this.prepTime = example.prepTime;
-    }             
+    }
 }
-
-

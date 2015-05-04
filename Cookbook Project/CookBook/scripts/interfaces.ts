@@ -16,6 +16,15 @@ interface IRecipeCategory extends IBaseRecipeCategory {
     examples: IExample[];
 }
 
+//IRecipeCategorySymmary
+
+interface IRecipeCategorySummary {
+    //Properties
+
+    text: string;
+    title: string;
+}
+
 //IFoodGroup
 
 interface IFoodGroup {
@@ -33,4 +42,3 @@ interface IExample {
     prepTime: string;
     ingredients: Ingredient[];
 }
-

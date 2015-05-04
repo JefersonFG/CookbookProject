@@ -1,19 +1,27 @@
 ﻿/// <reference path="typings/jquery.d.ts" />
 
 class RecipeLoader {
-    constructor(public url: string) {}
+    constructor(public url: string) { }
 
     load() {
         $.getJSON(this.url,(data) => {
-            this.mapData(data);        
+            this.mapData(data);
         });
     }
 
     mapData(data) {
         if (data) {
             var categories: any[] = data.recipeCategories;
-            //Map category data from XHR call to our TypeScript RecipeCategories
-            recipeCategories = new RecipeCategories();
+
+            //Changed RecipeCategories to use the new generic type
+
+            recipeCategories = new RecipeCategories<IRecipeCategory>();
+
+            //Created a new RecipeCategories object named recipeCategoriesSummary
+            //and passed an IRecipeCategorySummary as the generic value
+
+            var recipeCategoriesSummary: RecipeCategories<IRecipeCategorySummary> = new RecipeCategories<IRecipeCategorySummary>();
+
             categories.forEach((category) => {
                 var recipeCategory = new RecipeCategory({
                     name: category.title,
@@ -22,17 +30,27 @@ class RecipeLoader {
                     examples: this.getExamples(category)
                 });
                 recipeCategories.items.push(recipeCategory);
+
+                //Created a new RecipeCategorySummary instance
+                //and added it into the recipeCategoriesSummary items collection
+
+                var recipeCategorySummary = new RecipeCategorySummary({
+                    text: category.title,
+                    title: category.details
+                });
+                recipeCategoriesSummary.items.push(recipeCategorySummary);
+
             });
             
             //Render the categories into the select
-            renderer.renderCategories(recipeCategories);
+            renderer.renderCategories(recipeCategoriesSummary);
         }
         else {
             renderer.renderError();
         }
     }
 
-    getFoodGroups(category) : FoodGroup[] {
+    getFoodGroups(category): FoodGroup[] {
         //Map foodgroups data to TS object
         return category.foodGroups.map((foodGroup) => {
             var group = new FoodGroup(foodGroup.title);
@@ -40,8 +58,8 @@ class RecipeLoader {
         });
     }
 
-    getExamples(category) : IExample[] {
-        return category.examples.map((example) => { 
+    getExamples(category): IExample[] {
+        return category.examples.map((example) => {
             return new Example({
                 name: example.name,
                 ingredients: this.getIngredients(example),

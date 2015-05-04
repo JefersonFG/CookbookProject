@@ -1,10 +1,12 @@
 ﻿class Renderer {
 
-    renderCategories(recipeCategories: RecipeCategories) {
+    //Example how the RecipeCategories<T> generic is used.
+    renderCategories(recipeCategoriesSummary: RecipeCategories<IRecipeCategorySummary>) {
         var recipeSelect = document.getElementById('RecipeCategory');
-        recipeCategories.items.forEach((category) => {
+        recipeCategoriesSummary.items.forEach((category) => {
             var opt = document.createElement('option');
-            opt.innerHTML = category.name;
+            opt.setAttribute('title', category.title);
+            opt.innerHTML = category.text;
             recipeSelect.appendChild(opt);
         });
     }
