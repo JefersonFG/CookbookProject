@@ -1,7 +1,15 @@
-﻿var recipeCategories: RecipeCategories<IRecipeCategory>;
-var renderer = null;
+﻿import Interfaces = require('interfaces');
+import RCategory = require('recipeCategory');
+import RCategories = require('recipeCategories');
+import RLoader = require('recipeLoader');
+import Renderer = require('renderer');
 
-window.onload = () => { 
+export var recipeCategories: RCategories.RecipeCategories<Interfaces.RecipeCategory.IRecipeCategory>;
+export var renderer = null;
+
+window.onload = windowOnLoad;
+
+export function windowOnLoad () { 
     var categoriesSelect = (<HTMLSelectElement> document.getElementById('RecipeCategory'));
 
     //Invoke loadRecipes when categoriesSelect.onchange is called
@@ -10,13 +18,13 @@ window.onload = () => {
 
     //Create the loader object passing the json file as a parameter
 
-    var loader: RecipeLoader = new RecipeLoader("/JSON/recipeTypes.json");
+    var loader: RLoader.RecipeLoader = new RLoader.RecipeLoader("/JSON/recipeTypes.json");
 
     //Calling the load function of the RecipeLoader
 
     loader.load();
 
-    renderer = new Renderer();
+    renderer = new Renderer.Renderer();
 };
 
 function loadRecipes() {
@@ -26,7 +34,7 @@ function loadRecipes() {
             //Find selected item by name
             .filter(item => item.name === el.value)
             //return the item
-            .reduce(item => new RecipeCategory({
+            .reduce(item => new RCategory.RecipeCategory({
                 name: el.value,
                 foodGroups: item.foodGroups,
                 description: item.description,

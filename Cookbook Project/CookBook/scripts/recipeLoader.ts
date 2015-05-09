@@ -1,6 +1,15 @@
 ﻿/// <reference path="typings/jquery.d.ts" />
 
-class RecipeLoader {
+import RExample = require('recipeExample');
+import FGroup = require('foodGroup');
+import Ingredient = require('ingredient');
+import Initializer = require('initializer');
+import Interfaces = require('interfaces');
+import RCategory = require('recipeCategory');
+import RCategories = require('recipeCategories');
+import RCategorySummary = require('recipeCategorySummary');
+
+export class RecipeLoader {
     constructor(public url: string) { }
 
     load() {
@@ -15,26 +24,27 @@ class RecipeLoader {
 
             //Changed RecipeCategories to use the new generic type
 
-            recipeCategories = new RecipeCategories<IRecipeCategory>();
+            Initializer.recipeCategories = new RCategories.RecipeCategories<Interfaces.RecipeCategory.IRecipeCategory>();
 
             //Created a new RecipeCategories object named recipeCategoriesSummary
             //and passed an IRecipeCategorySummary as the generic value
 
-            var recipeCategoriesSummary: RecipeCategories<IRecipeCategorySummary> = new RecipeCategories<IRecipeCategorySummary>();
+            var recipeCategoriesSummary: RCategories.RecipeCategories<Interfaces.RecipeCategory.IRecipeCategorySummary> =
+                new RCategories.RecipeCategories<Interfaces.RecipeCategory.IRecipeCategorySummary>();
 
             categories.forEach((category) => {
-                var recipeCategory = new RecipeCategory({
+                var recipeCategory = new RCategory.RecipeCategory({
                     name: category.title,
                     foodGroups: this.getFoodGroups(category),
                     description: category.details,
                     examples: this.getExamples(category)
                 });
-                recipeCategories.items.push(recipeCategory);
+                Initializer.recipeCategories.items.push(recipeCategory);
 
                 //Created a new RecipeCategorySummary instance
                 //and added it into the recipeCategoriesSummary items collection
 
-                var recipeCategorySummary = new RecipeCategorySummary({
+                var recipeCategorySummary = new RCategorySummary.RecipeCategorySummary({
                     text: category.title,
                     title: category.details
                 });
@@ -43,24 +53,24 @@ class RecipeLoader {
             });
             
             //Render the categories into the select
-            renderer.renderCategories(recipeCategoriesSummary);
+            Initializer.renderer.renderCategories(recipeCategoriesSummary);
         }
         else {
-            renderer.renderError();
+            Initializer.renderer.renderError();
         }
     }
 
-    getFoodGroups(category): FoodGroup[] {
+    getFoodGroups(category): FGroup.FoodGroup[] {
         //Map foodgroups data to TS object
         return category.foodGroups.map((foodGroup) => {
-            var group = new FoodGroup(foodGroup.title);
+            var group = new FGroup.FoodGroup(foodGroup.title);
             return group;
         });
     }
 
-    getExamples(category): IExample[] {
+    getExamples(category): Interfaces.IExample[] {
         return category.examples.map((example) => {
-            return new Example({
+            return new RExample.Example({
                 name: example.name,
                 ingredients: this.getIngredients(example),
                 prepTime: example.prepTime
@@ -68,9 +78,9 @@ class RecipeLoader {
         });
     }
 
-    getIngredients(example): Ingredient[] {
+    getIngredients(example): Ingredient.Ingredient[] {
         return example.ingredients.map((value) => {
-            return new Ingredient(value);
+            return new Ingredient.Ingredient(value);
         });
     }
 } 

@@ -1,12 +1,15 @@
-﻿class BaseRecipeCategory implements IBaseRecipeCategory {
+﻿import FGroup = require('foodGroup');
+import Interfaces = require('interfaces');
+
+export class BaseRecipeCategory implements Interfaces.RecipeCategory.IBaseRecipeCategory {
     //Fields
 
     name: string;
-    foodGroups: FoodGroup[] = [];
+    foodGroups: FGroup.FoodGroup[] = [];
 
     //Constructor
 
-    constructor(name: string, foodGroups: FoodGroup[]) {
+    constructor(name: string, foodGroups: FGroup.FoodGroup[]) {
         this.name = name;
         this.foodGroups = foodGroups;
     }

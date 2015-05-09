@@ -1,33 +1,42 @@
-﻿//IBaseRecipeCategory
+﻿import FGroup = require('foodGroup');
+import Ingredient = require('ingredient');
 
-interface IBaseRecipeCategory {
-    //Properties
+//RecipeCategory module
 
-    name: string;
-    foodGroups: FoodGroup[];
-}
+export module RecipeCategory {
 
-//IRecipeCategory
+    //IBaseRecipeCategory
 
-interface IRecipeCategory extends IBaseRecipeCategory {
-    //Properties
+    export interface IBaseRecipeCategory {
+        //Properties
 
-    description: string;
-    examples: IExample[];
-}
+        name: string;
+        foodGroups: FGroup.FoodGroup[];
+    }
 
-//IRecipeCategorySymmary
+    //IRecipeCategory
 
-interface IRecipeCategorySummary {
-    //Properties
+    export interface IRecipeCategory extends IBaseRecipeCategory {
+        //Properties
 
-    text: string;
-    title: string;
+        description: string;
+        examples: IExample[];
+    }
+
+    //IRecipeCategorySymmary
+
+    export interface IRecipeCategorySummary {
+        //Properties
+
+        text: string;
+        title: string;
+    }
+
 }
 
 //IFoodGroup
 
-interface IFoodGroup {
+export interface IFoodGroup {
     //Properties
 
     name: string;
@@ -35,10 +44,10 @@ interface IFoodGroup {
 
 //IExample
 
-interface IExample {
+export interface IExample {
     //Properties
 
     name: string;
     prepTime: string;
-    ingredients: Ingredient[];
+    ingredients: Ingredient.Ingredient[];
 }

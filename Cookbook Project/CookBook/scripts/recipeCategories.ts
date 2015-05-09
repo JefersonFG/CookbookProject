@@ -1,4 +1,4 @@
-﻿class RecipeCategories<T> {
+﻿export class RecipeCategories<T> {
     //Fields
 
     items: T[] = [];

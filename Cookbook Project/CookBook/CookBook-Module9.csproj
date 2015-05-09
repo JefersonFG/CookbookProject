@@ -24,11 +24,14 @@
   <ItemGroup>
     <Content Include="images\cutlery.png" />
     <Content Include="scripts\libs\jquery-1.11.2.js" />
+    <Content Include="scripts\r.js" />
+    <Content Include="scripts\require.js" />
     <Content Include="styles\app.css" />
     <Content Include="cookbook.html" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="scripts\ingredient.ts" />
+    <TypeScriptCompile Include="scripts\main.ts" />
     <TypeScriptCompile Include="scripts\recipeCategorySummary.ts" />
     <TypeScriptCompile Include="scripts\recipeExample.ts" />
     <TypeScriptCompile Include="scripts\interfaces.ts" />
@@ -40,12 +43,14 @@
     <TypeScriptCompile Include="scripts\recipeLoader.ts" />
     <TypeScriptCompile Include="scripts\renderer.ts" />
     <TypeScriptCompile Include="scripts\typings\jquery.d.ts" />
+    <TypeScriptCompile Include="scripts\typings\requirejs\require.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="JSON\recipeTypes.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="web.config" />
+    <Content Include="packages.config" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -83,7 +88,7 @@
     <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
     <TypeScriptSourceMap>true</TypeScriptSourceMap>
     <TypeScriptTarget>ES5</TypeScriptTarget>
-    <TypeScriptModuleKind>none</TypeScriptModuleKind>
+    <TypeScriptModuleKind>amd</TypeScriptModuleKind>
     <WarningLevel>0</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">

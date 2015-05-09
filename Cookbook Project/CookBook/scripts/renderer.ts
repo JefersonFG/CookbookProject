@@ -1,7 +1,10 @@
-﻿class Renderer {
+﻿import Interfaces = require('interfaces');
+import RCategories = require('recipeCategories');
+
+export class Renderer {
 
     //Example how the RecipeCategories<T> generic is used.
-    renderCategories(recipeCategoriesSummary: RecipeCategories<IRecipeCategorySummary>) {
+    renderCategories(recipeCategoriesSummary: RCategories.RecipeCategories<Interfaces.RecipeCategory.IRecipeCategorySummary>) {
         var recipeSelect = document.getElementById('RecipeCategory');
         recipeCategoriesSummary.items.forEach((category) => {
             var opt = document.createElement('option');
@@ -11,7 +14,7 @@
         });
     }
 
-    renderCategory(category: IRecipeCategory) {
+    renderCategory(category: Interfaces.RecipeCategory.IRecipeCategory) {
         //Update foodgroups bullet points
         var foodGroups = (<HTMLSelectElement> document.getElementById('FoodGroups'));
         foodGroups.value = '';
@@ -29,7 +32,7 @@
 
     }
 
-    renderExamples(category: IRecipeCategory) {
+    renderExamples(category: Interfaces.RecipeCategory.IRecipeCategory) {
         //Update examples
         var examples = (<HTMLSelectElement> document.getElementById('examples'));
         examples.value = '';

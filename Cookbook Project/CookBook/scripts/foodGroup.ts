@@ -1,4 +1,6 @@
-﻿class FoodGroup implements IFoodGroup {
+﻿import Interfaces = require('interfaces');
+
+export class FoodGroup implements Interfaces.IFoodGroup {
     //Fields
 
     name: string;

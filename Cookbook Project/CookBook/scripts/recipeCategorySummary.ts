@@ -1,4 +1,6 @@
-﻿class RecipeCategorySummary implements IRecipeCategorySummary {
+﻿import Interfaces = require('interfaces');
+
+export class RecipeCategorySummary implements Interfaces.RecipeCategory.IRecipeCategorySummary {
     //Fields
 
     text: string;
@@ -6,7 +8,7 @@
 
     //Constructor
 
-    constructor(recipeCategorySummary: IRecipeCategorySummary) {
+    constructor(recipeCategorySummary: Interfaces.RecipeCategory.IRecipeCategorySummary) {
         this.text = recipeCategorySummary.text;
         this.title = recipeCategorySummary.title;
     }
